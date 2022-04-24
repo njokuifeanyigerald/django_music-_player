@@ -56,13 +56,21 @@ Spotify: The world of better music
       </div>
       <div class="flex space-x-3 p-2">
         <button class="focus:outline-none hover:bg-gray-200 prev">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="19 20 9 12 19 4 19 20"></polygon>
+            <line x1="5" y1="19" x2="5" y2="5"></line>
+          </svg>
         </button>
         <button class="rounded-full w-8 h-8 flex hover:bg-gray-200 items-center justify-center pl-0.5 ring-2 ring-gray-100 focus:outline-none playing">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
         </button>
         <button class="focus:outline-none hover:bg-gray-200 next">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19"></line>
+          </svg>
         </button>
       </div>
       <div class="Duration">
@@ -73,7 +81,9 @@ Spotify: The world of better music
       {% for music in musics %}
       <li class="flex items-center space-x-3 hover:bg-gray-100">
         <button class="p-3 hover:bg-green-500 group focus:outline-none play_single">
-          <svg class="w-4 h-4 group-hover:text-white play_svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <svg class="w-4 h-4 group-hover:text-white play_svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
         </button>
         <div class="flex-1">
           {{music.artist}}   - {{music.title}}
@@ -82,7 +92,9 @@ Spotify: The world of better music
           {{music.time_length | time_formatter }}
         </div>
         <a href="" class="focus:outline-none pr-4 group">
-          <svg class="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg>
+          <svg class="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/>
+          </svg>
         </a>
       </li>
       {% endfor %}
@@ -91,13 +103,148 @@ Spotify: The world of better music
   </div>
 </div>
 <a href="/add" class="w-20 h-20 bg-green-600 absolute rounded-full right-48 bottom-12 flex justify-center items-center cursor-pointer block">
-
- 
-    <svg xmlns='http://www.w3.org/2000/svg' class='ionicon h-10 w-10 text-gray-100 font-black' viewBox='0 0 512 512'><title>Add</title><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M256 112v288M400 256H112'/></svg>
-  
+  <svg xmlns='http://www.w3.org/2000/svg' class='ionicon h-10 w-10 text-gray-100 font-black' viewBox='0 0 512 512'>
+    <title>Add</title>
+    <path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M256 112v288M400 256H112'/>
+  </svg>
 </a>
-<audio class="audio-player" preload="metadata" autoplay="false" src="/media/musics/2017-04-14_-_Happy_Dreams_-_David_Fesliyan.mp3"></audio>
+<audio class="audio-player" preload="metadata" autoplay="false" src=""></audio>
 </div>
+
+<!-- check element in the browser, it will automatically pull out every data -->
+{{music_list | json_script:'musics'}}
+
+<script>
+  const player=document.querySelector('.audio-player')
+  const play=document.querySelector('.playing')
+  const prev=document.querySelector('.prev')
+  const next=document.querySelector('.next')
+  const currentTime=document.querySelector('.currentDuration')
+  const duration=document.querySelector('.Duration')
+  const progress=document.querySelector('.progress')
+  const progress_container=document.querySelector('.progress_container')
+  const audio_tracks=document.querySelector('.audio-tracks')
+  const song_title=document.querySelector('.song-title')
+  const artist=document.querySelector('.artist')
+  const album=document.querySelector('.album')
+  const music_img=document.querySelector('.music_img')
+
+  // init music index
+  let music_index = 0
+
+  // gettting thre songs from backend
+   const musics = JSON.parse(document.getElementById('musics').textContent)
+   console.log(musics)
+
+  //  format the time for music in javascript
+  const formatTime = (time) => {
+    let min = Math.floor((time%3600)/60)
+    let sec = Math.floor(time%60)
+    if (sec <10){
+      sec = `0${sec}`
+
+    }
+    return `${min}:${sec}`
+  }
+
+
+  // loading a set detail of music in UI
+  const setSRC = () => {
+    player.src = `/media/${musics[music_index].audio_file}`
+    song_title.textContent = musics[music_index].title
+    artist.textContent = musics[music_index].artist
+    music_img.setAttribute('src', `/media/${musics[music_index].cover_image}`)
+    if (musics[music_index].album_id !== null){
+      album.textContent  = musics[music_index].album_id
+      console.log(album.textContent)
+    }else{
+      album.textContent = 'Single'
+    }
+  }
+
+  const PlayOrPause = () => {
+    if (player.paused){
+      player.play()
+    }else{
+      player.pause()
+    }
+  }
+
+  // load first music
+  setSRC()
+  player.pause()
+
+  // eventlisteners
+  // when play btn is clicked
+
+  play.addEventListener('click', ()=> {
+    PlayOrPause()
+  })
+
+  // loads durations of music for current music to UI
+  player.addEventListener('loadedmetadata', ()=> {
+    duration.textContent = formatTime(player.duration)
+  })
+
+  // update the progress bar
+  player.addEventListener('timeupdate', ()=>{
+    let sec = player.currentTime
+    let total = player.duration
+
+    currentTime.textContent = formatTime(player.currentTime)
+
+    let progress_container_width = progress_container.offsetWidth
+    let progress_width = progress.offsetWidth
+
+    let audio_played = (sec/total)*100
+    let newWidth = progress_container_width*(audio_played/100)
+    progress.style.width = `${newWidth}px`
+  })
+
+  // when prev button is clicked
+  prev.addEventListener('click', () => {
+    music_index = music_index-1
+    if(music_index<0){
+      music_index = musics.length -1
+    }
+
+    setSRC()
+    PlayOrPause()
+  })
+
+
+  // when next button is clicked
+  next.addEventListener('click', () => {
+    music_index = music_index+1
+    if(music_index> musics.length-1){
+      music_index = 0
+    }
+
+    setSRC()
+    PlayOrPause()
+  })
+
+  //when a progress bar is clicked to change music timer 
+  progress_container.addEventListener('click', e => {
+    const clicked_percentage = (e.offsetX/progress_container.offsetWidth)*100
+    const audio_played = (clicked_percentage/100)*player.duration
+
+    let playing 
+    if(player.paused){
+      playing = false
+    }else{
+      playing = true
+    }
+
+    player.currentTime = audio_played
+
+    if(playing==false){
+      player.pause()
+    }
+  })
+
+
+</script>
 
 {% endblock content %}
 
