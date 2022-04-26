@@ -13,11 +13,11 @@
     </div>
     <div class="my-4">
         <label for="id_title" class="text-lg ">Title:</label>
-        <input type="text" name="title" maxlength="500" required="" id="id_title" class="block w-full p-2 outline-none border-2 border-black rounded-lg">
+        <input type="text" name="title" maxlength="500"  id="id_title" class="block w-full p-2 outline-none border-2 border-black rounded-lg" required>
     </div>
     <div class="my-4">
         <label for="id_title" class="text-lg ">Artist:</label>
-        <input type="text" name="artiste" maxlength="500" required="" id="id_artiste" class="block w-full p-2 outline-none border-2 border-black rounded-lg">
+        <input type="text" name="artist" maxlength="500"  id="id_artiste" class="block w-full p-2 outline-none border-2 border-black rounded-lg" required>
     </div>
     <div class=" overflow-hidden flex items-center justify-center flex-col my-4" >
         <div class="details-audio text-black text-base">
@@ -53,6 +53,18 @@
         Submit
     </button>
 </form> 
+<script>
+    function showname (type) {
+    if(type=='audio'){
 
+        var name = document.getElementById('id_audio_file'); 
+    }else{
+        var name = document.getElementById('id_cover_image'); 
+
+    }
+    const file_name= name.files.item(0).name
+    document.querySelector(`.details-${type}`).textContent=`${file_name}`
+    };
+</script>
 
 {%endblock content%}

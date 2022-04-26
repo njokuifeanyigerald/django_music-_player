@@ -92,9 +92,17 @@ Spotify: The world of better music
           {{music.time_length | time_formatter }}
         </div>
         <a href="" class="focus:outline-none pr-4 group">
-          <svg class="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/>
-          </svg>
+          <button value="Download Music File" onclick="DownloadFile('{{music.audio_file}}')">
+            <i class="fas fa-download"></i>
+          </button>
+
+          <!-- <form method="get" action="{{music.audio_file}}">
+            
+              <a href="/media_root/{{music.audio_file}}" download="{{music.audio_file}}">
+               
+              </a>              
+          </form> -->
+
         </a>
       </li>
       {% endfor %}
@@ -243,8 +251,51 @@ Spotify: The world of better music
     }
   })
 
+  // when an audio is chosen from the song tracks
+
+  // audio_tracks.addEventListener('click', ()=> {
+  //   if((e.target.nodeName =='BUTTON' && e.target.classList.contains('play_single')) || 
+  //     (e.target.nodeName == 'svg' && e.target.classList.contains('play_svg'))){
+  //       let parent_cont
+  //     }
+  // })
+
+
+  // when an audio is chosen from the song tracks
+audio_tracks.addEventListener('click',e=>{
+  if((e.target.nodeName=='BUTTON' && e.target.classList.contains('play_single'))||
+  (e.target.nodeName=='svg'&&e.target.classList.contains('play_svg'))){
+    let parent_cont
+    
+    if (e.target.nodeName=='BUTTON'){
+      parent_cont=e.target.parentNode
+    }
+    else{
+        parent_cont=e.target.parentNode.parentNode
+    }
+    const newIndex=Array.from(audio_tracks.querySelectorAll('li')).indexOf(parent_cont)
+    
+    if (newIndex==music_index){
+      if(player.paused){
+        
+        player.play()
+      }else{
+        
+        player.pause()
+      }
+    }else{
+
+      music_index=newIndex
+      setSRC()
+      player.play()
+    }
+  
+  }
+})
 
 </script>
+
+
 
 {% endblock content %}
 

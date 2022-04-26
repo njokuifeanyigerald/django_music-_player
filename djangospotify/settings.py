@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'djangospotify.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'trap_music',
+        'NAME': 'music_app',
         'USER': 'postgres',
         'PASSWORD': '12345',
         'HOST': 'localhost'

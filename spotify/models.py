@@ -10,6 +10,7 @@ class Music(models.Model):
     time_length = models.DecimalField(blank=True, max_digits=6, decimal_places=2)
     audio_file = models.FileField(upload_to='musics', validators=[validate_audio])
     cover_image = models.ImageField(upload_to='music_image/')
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         if not self.time_length:
