@@ -92,17 +92,6 @@ Spotify: The world of better music
           {{music.time_length | time_formatter }}
         </div>
         <a href="" class="focus:outline-none pr-4 group">
-          <button value="Download Music File" onclick="DownloadFile('{{music.audio_file}}')">
-            <i class="fas fa-download"></i>
-          </button>
-
-          <!-- <form method="get" action="{{music.audio_file}}">
-            
-              <a href="/media_root/{{music.audio_file}}" download="{{music.audio_file}}">
-               
-              </a>              
-          </form> -->
-
         </a>
       </li>
       {% endfor %}
@@ -162,9 +151,9 @@ Spotify: The world of better music
     song_title.textContent = musics[music_index].title
     artist.textContent = musics[music_index].artist
     music_img.setAttribute('src', `/media/${musics[music_index].cover_image}`)
-    if (musics[music_index].album_id !== null){
-      album.textContent  = musics[music_index].album_id
-      console.log(album.textContent)
+    if (musics[music_index].album !== null){
+      album.textContent  = musics[music_index].album
+      console.log(musics[music_index].album)
     }else{
       album.textContent = 'Single'
     }

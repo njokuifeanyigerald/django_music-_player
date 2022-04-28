@@ -6,7 +6,8 @@ from .helpers import get_audio_length
 class Music(models.Model):
     title = models.CharField(max_length=300)
     artist = models.CharField(max_length=300)
-    album = models.ForeignKey('Album', on_delete=models.SET_NULL, null=True, blank=True)
+    # album = models.ForeignKey('Album', on_delete=models.SET_NULL, null=True, blank=True)
+    album = models.CharField(max_length=300, blank=True, null=True)
     time_length = models.DecimalField(blank=True, max_digits=6, decimal_places=2)
     audio_file = models.FileField(upload_to='musics', validators=[validate_audio])
     cover_image = models.ImageField(upload_to='music_image/')
@@ -23,12 +24,12 @@ class Music(models.Model):
         return self.title
 
 
-class Album(models.Model):
-    name = models.CharField(max_length=300)
+# class Album(models.Model):
+#     name = models.CharField(max_length=300)
 
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 
