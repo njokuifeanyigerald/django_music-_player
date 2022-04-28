@@ -1,0 +1,14 @@
+
+{
+    "builds": [{
+        "src": "djangospotify/wsgi.py",
+        "use": "@ardnt/vercel-python-wsgi",
+        "config": { "maxLambdaSize": "15mb" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "djangospotify/wsgi.py"
+        }
+    ]
+}

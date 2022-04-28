@@ -17,7 +17,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-q5xh*4!#y&^6ui^yztt!c6x8sgukg-tv4)68%mg#6q5kj4a7+%'
+
 
 
 
@@ -25,7 +27,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app', '*'] # Allow *.vercel.app
+
 
 
 # Application definition
@@ -88,15 +92,17 @@ WSGI_APPLICATION = 'djangospotify.wsgi.application'
 
 
 # POSTGRES
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'music_app',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'music_app',
+#         'USER': 'postgres',
+#         'PASSWORD': '12345',
+#         'HOST': 'localhost'
+#     }
+# }
+
+DATABASES = {}
 
 
 # Password validation
