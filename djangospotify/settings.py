@@ -92,17 +92,17 @@ WSGI_APPLICATION = 'djangospotify.wsgi.application'
 
 
 # POSTGRES
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'music_app',
-#         'USER': 'postgres',
-#         'PASSWORD': '12345',
-#         'HOST': 'localhost'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'music_app',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost'
+    }
+}
 
-DATABASES = {}
+# DATABASES = {}
 
 
 # Password validation
